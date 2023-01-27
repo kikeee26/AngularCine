@@ -1,0 +1,56 @@
+<app-listado-generico [listado]="peliculas">
+
+<span #cargando>
+    <ng-content select="[cargando]"></ng-content>
+</span>
+
+    <ng-container contenido>
+        <div class="peliculas-contenedor">
+            <div *ngFor="let pelicula of peliculas; let index = index" class="pelicula-contenedor">
+
+            <a>
+                <img [src]="pelicula.poster" alt="Poster" />
+            </a>
+            <p> 
+                <a>{{pelicula.titulo}}</a>
+            </p>
+            <p>
+                <a>{{pelicula.fechaLanzamiento | date: 'dd/MM/yyyy'}}</a>
+            </p>
+            <p>
+                <a>{{pelicula.precio | currency: 'EUR'}}</a>
+            </p>            
+            <div>
+                <a mat-flat-button color="primary">
+                    Editar
+                </a>
+                <button
+                mat-flat-button
+                color="warn"
+                type="button">
+                    Borrar
+                </button>
+            </div>
+
+        <!-- <div *ngFor="let pelicula of peliculas; let index = index" class="peliculaContenedor">
+        
+            <div>
+                {{index}} <h3>{{pelicula.titulo | lowercase}} </h3>
+                
+                <button style="margin-left:1rem;" (click)="remover(index)" >Remover</button>
+            </div>
+
+            <h3>Datos de la pelicula</h3>
+            <div>
+                {{pelicula.fechaLanzamiento | date:"dd-MMMM-yyyy" | uppercase}}
+            </div>
+
+            <div>
+                {{pelicula.precio | currency}}
+            </div>
+            <app-rating (rated)="manejarRated($event)"></app-rating>
+        </div>-->
+        </div>
+    </div>
+    </ng-container>
+</app-listado-generico>
