@@ -7,6 +7,7 @@ import { ListadoPeliculasComponent } from './peliculas/listado-peliculas/listado
 import { ListadoGenericoComponent } from './Utilidades/listado-generico/listado-generico.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms'
+import { MarkdownModule } from 'ngx-markdown'
 
 import { MaterialModule } from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
@@ -23,6 +24,12 @@ import { EditarActorComponent } from './actores/editar-actor/editar-actor.compon
 import { EditarGeneroComponent } from './generos/editar-genero/editar-genero.component';
 import { EditarCineComponent } from './cines/editar-cine/editar-cine.component';
 import { EditarPeliculaComponent } from './peliculas/editar-pelicula/editar-pelicula.component';
+import { FormularioGeneroComponent } from './generos/formulario-genero/formulario-genero.component';
+import { FiltroPeliculasComponent } from './peliculas/filtro-peliculas/filtro-peliculas.component';
+import { FormularioActoresComponent } from './actores/formulario-actores/formulario-actores.component';
+import { InputImgComponent } from './utilidades/input-img/input-img.component';
+import { InputMarkdownComponent } from './utilidades/input-markdown/input-markdown.component';
+import { FormularioCineComponent } from './cines/formulario-cine/formulario-cine.component';
 
 @NgModule({
   declarations: [
@@ -43,13 +50,20 @@ import { EditarPeliculaComponent } from './peliculas/editar-pelicula/editar-peli
     EditarGeneroComponent,
     EditarCineComponent,
     EditarPeliculaComponent,
+    FormularioGeneroComponent,
+    FiltroPeliculasComponent,
+    FormularioActoresComponent,
+    InputImgComponent,
+    InputMarkdownComponent,
+    FormularioCineComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MarkdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,34 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { generoCreacionDTO } from '../genero';
 
 @Component({
   selector: 'app-crear-genero',
   templateUrl: './crear-genero.component.html',
   styleUrls: ['./crear-genero.component.css']
 })
-export class CrearGeneroComponent implements OnInit{
+export class CrearGeneroComponent {
 
   constructor(private router: Router, private formBuilder: FormBuilder) { }
 
-  form: FormGroup;
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      nombre: ['', {
-        validators: [Validators.required]
-      }]
-    });
-  }
-  guardarCambios() {
-    //--Guardar los cambios
+  guardarCambios(genero: generoCreacionDTO) {
+    console.log(genero);
     this.router.navigate(['/generos']);
-  }
-  obtenerErrorCampoNombre(){
-    var campo = this.form.get('nombre');
-    if(campo.hasError('required'))
-    {
-      return 'El campo es requerido';
-    }
-    return '';
   }
 }
