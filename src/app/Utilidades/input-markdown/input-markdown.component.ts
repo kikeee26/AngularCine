@@ -19,9 +19,4 @@ export class InputMarkdownComponent {
 
   constructor() {}
 
-  inputTextArea(texto: string){
-    console.log(texto);
-    this.contenidoMarkDown = texto;
-    this.changeMarkDown.emit(texto);
-  }
 }

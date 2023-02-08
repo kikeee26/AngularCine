@@ -13,5 +13,5 @@ export interface PeliculaDTO {
     enCines: boolean;
     fechaLanzamiento: Date;
     trailer: string;
-    Poster: string;
+    poster: string;
 }
