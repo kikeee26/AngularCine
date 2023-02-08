@@ -10,7 +10,7 @@ export class EditarCineComponent {
 
   constructor() {}
 
-  modelo: cineDTO = {nombre: "Cinemas el punt"};
+  modelo: cineDTO = {nombre: "Cinemas el punt", latitud: 41.491682050797145, lontitud: 2.1479237079620366};
 
 
   guardarCambios(cine: cineCreacionDTO)
