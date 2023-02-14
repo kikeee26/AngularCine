@@ -10,7 +10,7 @@ export function primeraLetraMayuscula(): ValidatorFn {
         if (primeraLetra !== primeraLetra.toLocaleUpperCase()) {
             return {
                 primeraLetraMayuscula: {
-                    mensaje: 'La primkera letra debe ser mayúscula.'
+                    mensaje: 'La primera letra debe ser mayúscula.'
                 }
             }
         }
