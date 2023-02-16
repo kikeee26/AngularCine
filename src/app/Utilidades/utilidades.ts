@@ -7,6 +7,21 @@ export function toBase64(file: File){
     })
 }
 
+export function formatearFecha(date: Date){
+    date = new Date(date);
+    const formato = new Intl.DateTimeFormat('en', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    });
+    const [
+        {value: day},,        
+        {value: month},,
+        {value: year}
+    ] = formato.formatToParts(date);
+    return `${day}-${month}-${year}`;
+}
+
 export function parsearErroresAPI(response: any): string[]{
     const resultado: string[] = [];
 

@@ -12,7 +12,6 @@ import { GenerosService } from '../generos.service';
 })
 export class EditarGeneroComponent implements OnInit {
 
-
   constructor(private router: Router, 
     private generosSevices: GenerosService,
     private activatedRoute: ActivatedRoute){}
