@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
       iconSize: [ 25, 41 ],
       iconAnchor: [ 13, 41 ],
       iconUrl: 'leaflet/marker-icon.png',
-      shadowUrl: 'leaflet/marker-shadow.png'
+      shadowUrl: 'leaflet/marker-shadow.png',
+      iconRetinaUrl: 'leaflet/dist/images/marker-icon-2x.png'
     })
   });
 }

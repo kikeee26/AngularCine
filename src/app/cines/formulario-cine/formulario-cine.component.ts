@@ -15,6 +15,10 @@ export class FormularioCineComponent implements OnInit{
   form: FormGroup
   
   @Input()
+  errores: string[] = [];
+  
+
+  @Input()
   modelo: cineCreacionDTO;
 
   @Output()
@@ -36,12 +40,21 @@ export class FormularioCineComponent implements OnInit{
           validators: [Validators.required]
         }
       ],
+      longitud: [
+        '',
+        {
+          validators: [Validators.required]
+        }
+      ]
     });
 
     if(this.modelo !== undefined)
     {
       this.form.patchValue(this.modelo);
-      this.coordenadaInicial.push({latitud: this.modelo.latitud, longitud: this.modelo.lontitud});
+      /*console.log(this.modelo.nombre);      
+      console.log(this.modelo.latitud);
+      console.log(this.modelo.lontitud);*/
+      this.coordenadaInicial.push({latitud: this.modelo.latitud, longitud: this.modelo.longitud});
     }
   }
 

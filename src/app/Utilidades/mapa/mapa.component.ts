@@ -17,7 +17,15 @@ export class MapaComponent implements OnInit {
   coordenadaSeleccionada: EventEmitter<Coordenada> = new EventEmitter<Coordenada>();
 
   ngOnInit(): void {
-    this.capas = this.coordenadasIniciales.map(valor => marker([valor.latitud, valor.longitud]));
+    this.capas = this.coordenadasIniciales.map(valor => marker([valor.latitud, valor.longitud], {
+      icon: icon({
+        iconSize:[25, 41],
+        iconAnchor:[13, 41],
+        iconUrl: 'assets/marker-icon.png',
+        iconRetinaUrl: 'assets/marker-icon-2x.png',
+        shadowUrl: 'assets/marker-shadow.png'
+      })
+    }));
   }
 
   options = {
@@ -25,9 +33,9 @@ export class MapaComponent implements OnInit {
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
     ],
     zoom: 9,
-    center: latLng(41.49184423622458, 2.134705781936646),
-    icon: 'src\assets\marker.png'
-  };
+    center: latLng(41.48677160937783, 2.1121215820312504),
+    icon: 'assets/marker.png'
+  }; 
 
   capas: Marker<any>[] = [];
 
