@@ -1,9 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { formatearFecha } from '../utilidades/utilidades';
-import { actorCreacionDTO, actorDTO } from './actor';
+import { actorCreacionDTO, actorDTO, actorPeliculaDTO } from './actor';
 
 @Injectable({
   providedIn: 'root'
@@ -57,4 +57,10 @@ export class ActoresService {
     return this.http.delete(`${this.apiURL}/${id}`);
   }
   
+  public obtenerPorNombre(nombre: string): Observable<actorPeliculaDTO[]>{
+    const headers = new HttpHeaders('Content-Type: application/json');
+    return this.http.post<actorPeliculaDTO[]>(`${this.apiURL}/buscarPorNombre`,
+    JSON.stringify(nombre), {headers});
+  }
+
 }
