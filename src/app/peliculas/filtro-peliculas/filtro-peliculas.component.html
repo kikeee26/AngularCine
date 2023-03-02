@@ -1,6 +1,8 @@
 <h2>Buscar películas</h2>
 
-<form [formGroup]="form">
+<mat-spinner *ngIf="!peliculas"></mat-spinner>
+
+<form [formGroup]="form" *ngIf="peliculas">
 
     <mat-form-field appearance="outline">
         <mat-label>Título</mat-label>
@@ -27,7 +29,14 @@
     <div class="contenedor-limpiar">
         <button mat-flat-button (click)="limpiar()" color="warn">Limpiar</button>
     </div>
+</form>
 
     <app-listado-peliculas [peliculas]="peliculas"></app-listado-peliculas>
 
-</form>
+    <mat-paginator
+    [length]="cantidadElementos"
+    [pageSize]="cantidadElementosAMostrar"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="paginatorUpdate($event)">
+
+    </mat-paginator>

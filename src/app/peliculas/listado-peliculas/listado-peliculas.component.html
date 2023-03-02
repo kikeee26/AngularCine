@@ -8,11 +8,11 @@
         <div class="peliculas-contenedor">
             <div *ngFor="let pelicula of peliculas; let index = index" class="pelicula-contenedor">
 
-            <a [routerLink]="'/pelicula/' + pelicula.id">
+            <a [routerLink]="'/peliculas/' + pelicula.id">
                 <img [src]="pelicula.poster" alt="Poster" />
             </a>
             <p> 
-                <a [routerLink]="'/pelicula/' + pelicula.id">{{pelicula.titulo}}</a>
+                <a [routerLink]="'/peliculas/' + pelicula.id">{{pelicula.titulo}}</a>
             </p>
             <p>
                 <a>{{pelicula.fechaLanzamiento | date: 'dd/MM/yyyy'}}</a>
@@ -27,7 +27,12 @@
                 <button
                 mat-flat-button
                 color="warn"
-                type="button">
+                type="button"
+                [swal]="{title: 'Confirmación', 
+                text: '¿Esta seguro que desea borrar el registro?', 
+                showCancelButton: true}"
+                (confirm)="borrar(pelicula.id)"
+                >
                     Borrar
                 </button>
             </div>
