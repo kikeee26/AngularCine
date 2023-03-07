@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SeguridadService } from '../seguridad/seguridad.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-
+  constructor(public seguridadService: SeguridadService) {}
 }

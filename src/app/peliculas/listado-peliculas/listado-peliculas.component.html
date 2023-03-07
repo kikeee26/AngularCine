@@ -19,23 +19,30 @@
             </p>
             <p>
                 <a>{{pelicula.precio | currency: 'EUR'}}</a>
-            </p>            
-            <div>
-                <a mat-flat-button color="primary" [routerLink]="'/peliculas/editar/' + pelicula.id">
-                    Editar
-                </a>
-                <button
-                mat-flat-button
-                color="warn"
-                type="button"
-                [swal]="{title: 'Confirmación', 
-                text: '¿Esta seguro que desea borrar el registro?', 
-                showCancelButton: true}"
-                (confirm)="borrar(pelicula.id)"
-                >
-                    Borrar
-                </button>
-            </div>
+            </p>    
+               
+            <app-autorizado [rol]="'admin'">
+                <ng-container autorizado>
+                    <div>
+                        <a mat-flat-button color="primary" [routerLink]="'/peliculas/editar/' + pelicula.id">
+                            Editar
+                        </a>
+                        <button
+                        mat-flat-button
+                        color="warn"
+                        type="button"
+                        [swal]="{title: 'Confirmación', 
+                        text: '¿Esta seguro que desea borrar el registro?', 
+                        showCancelButton: true}"
+                        (confirm)="borrar(pelicula.id)"
+                        >
+                            Borrar
+                        </button>
+                    </div>
+                </ng-container>
+            </app-autorizado>
+            
+            
 
         <!-- <div *ngFor="let pelicula of peliculas; let index = index" class="peliculaContenedor">
         
