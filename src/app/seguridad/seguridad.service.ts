@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { credencialesUsuario, respuestaAutenticacion } from './seguridad';
+import { credencialesUsuario, respuestaAutenticacion, usuarioDTO } from './seguridad';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,25 @@ export class SeguridadService {
   apiUrl = environment.apiURL + 'cuentas'
   private readonly llaveToken = 'token';
   private readonly llaveExpiracion = 'token-expiracion';
+  private readonly campoRol = 'role';
+
+  obtenerUsuarios(pagina: number, recordsPorPagina: number): Observable<any>{
+    let params = new HttpParams();
+    params.append('pagina', pagina.toString());
+    params.append('recordsPorPagina', recordsPorPagina);
+    return this.httpClient.get<usuarioDTO>(`${this.apiUrl}/listadousuarios`,
+    {observe: 'response', params})
+  }
+
+  hacerAdmin(usuarioId: string) {
+    const headers = new  HttpHeaders('Content-Type: application/json');
+    return this.httpClient.post(`${this.apiUrl}/hacerAdmin`, JSON.stringify(usuarioId), {headers});
+  }
+
+  removerAdmin(usuarioId: string) {
+    const headers = new  HttpHeaders('Content-Type: application/json');
+    return this.httpClient.post(`${this.apiUrl}/removerAdmin`, JSON.stringify(usuarioId), {headers});
+  }
 
   estaLogueado(): boolean {
     const token = localStorage.getItem(this.llaveToken);
@@ -40,7 +59,7 @@ export class SeguridadService {
   }
 
   obtenerRol(): string {
-    return '';
+    return this.obtenerCampoJWT(this.campoRol);
   }
 
   obtenerCampoJWT(campo: string): string {
@@ -61,5 +80,9 @@ export class SeguridadService {
   guardarToken(respuestaAutenticacion: respuestaAutenticacion){
     localStorage.setItem(this.llaveToken, respuestaAutenticacion.token);
     localStorage.setItem(this.llaveExpiracion, respuestaAutenticacion.expiracion.toString());
+  }
+
+  obtenerToken(){
+    return localStorage.getItem(this.llaveToken);
   }
 }

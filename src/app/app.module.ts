@@ -1,5 +1,5 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -48,6 +48,8 @@ import { AutorizadoComponent } from './seguridad/autorizado/autorizado.component
 import { LoginComponent } from './seguridad/login/login.component';
 import { RegistroComponent } from './seguridad/registro/registro.component';
 import { FormularioAutenticacionComponent } from './seguridad/formulario-autenticacion/formulario-autenticacion.component';
+import { SeguridadInterceptorService } from './seguridad/seguridad-interceptor.service';
+import { IndiceUsuariosComponent } from './seguridad/indice-usuarios/indice-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +85,8 @@ import { FormularioAutenticacionComponent } from './seguridad/formulario-autenti
     AutorizadoComponent,
     LoginComponent,
     RegistroComponent,
-    FormularioAutenticacionComponent
+    FormularioAutenticacionComponent,
+    IndiceUsuariosComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,17 @@ import { FormularioAutenticacionComponent } from './seguridad/formulario-autenti
     MarkdownModule.forRoot(),
     SweetAlert2Module.forRoot()
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es' }],
+  providers: [
+    {
+      provide: LOCALE_ID, 
+      useValue: 'es' 
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SeguridadInterceptorService,
+      multi: true
+    }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
